@@ -19,7 +19,7 @@ public class MySketch extends PApplet{
     public void setup() {
         background(255); 
         textSize(20);
-        //person = new Person(this, 100, 100, "Mr. Lu", 99, "images/person.png");
+        person = new Person(this, 100, 100, "Mr. Lu", "images/ojiisan03_smile.png");
     }
     
     public void draw(){
@@ -27,7 +27,7 @@ public class MySketch extends PApplet{
         if(stage==0){
             fill(0);
             text("My Cultural Story",20,50);
-            text("Press any key to continue",20,100);
+            text("Press ENTER to continue",20,100);
         } else if (stage==1){
             person.draw();
         }
