@@ -18,6 +18,26 @@ public class MySketch extends PApplet{
     
     public void setup() {
         background(255); 
-        person = new Person(this, 100, 100, "Mr. Lu", 99, "images/person.png");
+        textSize(20);
+        //person = new Person(this, 100, 100, "Mr. Lu", 99, "images/person.png");
+    }
+    
+    public void draw(){
+        background(255);
+        if(stage==0){
+            fill(0);
+            text("My Cultural Story",20,50);
+            text("Press any key to continue",20,100);
+        } else if (stage==1){
+            person.draw();
+        }
+    }
+    
+    public void keyPressed(){
+        if (stage==0){
+            if (keyCode==ENTER){
+                stage=1;
+            }
+        }
     }
 }
