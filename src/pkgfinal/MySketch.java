@@ -10,16 +10,17 @@ import processing.core.PApplet;
  */
 public class MySketch extends PApplet{
     private Person person;
+    private Sparrow sparrow;
     private int stage = 0;
     
     public void settings() {
-        size(400, 400);
+        size(545, 350);
     }
     
     public void setup() {
         background(255); 
         textSize(20);
-        person = new Person(this, 100, 100, "Mr. Lu", "images/ojiisan03_smile.png");
+        sparrow = new Sparrow(this,100,100,"images/ojiisan03_smile.png");
     }
     
     public void draw(){
@@ -29,7 +30,7 @@ public class MySketch extends PApplet{
             text("My Cultural Story",20,50);
             text("Press ENTER to continue",20,100);
         } else if (stage==1){
-            person.draw();
+            sparrow.display();
         }
     }
     
