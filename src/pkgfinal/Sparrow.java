@@ -11,8 +11,8 @@ import processing.core.PApplet;
 public class Sparrow extends Animal{
     private boolean tongueSplit;
     
-    public Sparrow(PApplet app,int x, int y,String imagePath){
-        super(app,x,y,imagePath,"Sparrow");
+    public Sparrow(PApplet p,int x, int y,String imagePath){
+        super(p,x,y,imagePath,"Sparrow");
         tongueSplit = false;
     }
     
@@ -22,6 +22,11 @@ public class Sparrow extends Animal{
     
     public void splitTongue(){
         tongueSplit=true;
+    }
+    
+    public void move(int dx, int dy){
+        x+=dx;
+        y+=dy;
     }
     
     public boolean isClicked(int mouseX, int mouseY) {

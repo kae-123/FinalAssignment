@@ -12,8 +12,8 @@ public class Animal extends GameObject{
     private String species;
     private int health;
     
-    public Animal(PApplet app,int x, int y,String imagePath,String species){
-        super(app,x,y,imagePath);
+    public Animal(PApplet p,int x, int y,String imagePath,String species){
+        super(p,x,y,imagePath);
         this.species = species;
         this.health = 100;
     }

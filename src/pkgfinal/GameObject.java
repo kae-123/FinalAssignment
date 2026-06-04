@@ -14,8 +14,8 @@ public class GameObject {
     protected PApplet app;
     protected PImage image;
     
-    public GameObject(PApplet appp,int x,int y,String imagePath){
-        this.app=app;
+    public GameObject(PApplet p,int x,int y,String imagePath){
+        this.app=p;
         this.x=x;
         this.y=y;
         this.image = app.loadImage(imagePath);

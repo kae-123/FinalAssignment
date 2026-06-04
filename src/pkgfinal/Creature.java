@@ -10,8 +10,8 @@ import processing.core.PApplet;
  * @author kaetg
  */
 public class Creature extends Animal{
-    public Creature(PApplet app,int x, int y, String imagePath){
-        super(app,x,y,imagePath,"Creature");
+    public Creature(PApplet p,int x, int y, String imagePath){
+        super(p,x,y,imagePath,"Creature");
     }
     
     public void scare(){

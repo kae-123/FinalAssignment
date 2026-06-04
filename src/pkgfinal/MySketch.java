@@ -4,6 +4,7 @@
  */
 package pkgfinal;
 import processing.core.PApplet;
+import processing.core.PImage;
 /**
  *
  * @author 345341119
@@ -12,25 +13,40 @@ public class MySketch extends PApplet{
     private Person person;
     private Sparrow sparrow;
     private int stage = 0;
+    private PImage bg;
     
     public void settings() {
         size(545, 350);
     }
     
     public void setup() {
-        background(255); 
+        //background(255); 
         textSize(20);
-        sparrow = new Sparrow(this,100,100,"images/ojiisan03_smile.png");
+        bg = loadImage("images/MainBG.jpg");
+        sparrow = new Sparrow(this,100,100,"images/sparrow (1).png");
+        //person = new Person(this,100,100,"")
     }
     
     public void draw(){
-        background(255);
+        //background(255);
+        image(bg,0,0,width,height);
         if(stage==0){
             fill(0);
             text("My Cultural Story",20,50);
             text("Press ENTER to continue",20,100);
         } else if (stage==1){
             sparrow.display();
+            if (keyPressed){
+                if(keyCode==LEFT){
+                    sparrow.move(-5,0);
+                } else if (keyCode==RIGHT){
+                    sparrow.move(5,0);
+                } else if (keyCode==UP){
+                    sparrow.move(0,-5);
+                } else if (keyCode==DOWN){
+                    sparrow.move(0,5);
+                }
+            } 
         }
     }
     
