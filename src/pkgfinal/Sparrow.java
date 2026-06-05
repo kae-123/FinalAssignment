@@ -46,7 +46,7 @@ public class Sparrow extends Animal{
         return d < 16; 
     }
     
-    public boolean isCollidingWith(Person other){
+    public boolean isCollidingWith(OldMan other){
         boolean isLeftOfOtherRight = x<other.x+other.image.width;
         boolean isRightOfOtherLeft = x+image.width>other.x;
         boolean isAboveOtherButton = y<other.y+other.image.height;

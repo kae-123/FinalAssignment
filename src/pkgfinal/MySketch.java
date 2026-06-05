@@ -25,8 +25,8 @@ public class MySketch extends PApplet{
         textSize(20);
         bg = loadImage("images/MainBG.jpg");
         sparrow = new Sparrow(this,100,100,"images/sparrow (1).png");
-        person = new Person(this,100,100,"old man","ojiisan03_smile.png");
-        old = new OldMan(this,100,100,"old man","ojiisan03_smile.png",sparrow);
+        person = new Person(this,100,100,"old man","images/ojiisan03_smile.png");
+        old = new OldMan(this,100,100,"old man","images/ojiisan03_smile.png",sparrow);
     }
     
     public void draw(){
