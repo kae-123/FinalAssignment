@@ -46,6 +46,16 @@ public class Sparrow extends Animal{
         return d < 16; 
     }
     
+    public boolean isCollidingWith(Person other){
+        boolean isLeftOfOtherRight = x<other.x+other.image.width;
+        boolean isRightOfOtherLeft = x+image.width>other.x;
+        boolean isAboveOtherButton = y<other.y+other.image.height;
+        boolean isBelowOtherTop= y+image.height>other.y;
+        
+        return isLeftOfOtherRight && isRightOfOtherLeft&&
+                isAboveOtherButton && isBelowOtherTop;
+    }
+    
     @Override
     public void makeSound(){
         System.out.println("Chirp!");

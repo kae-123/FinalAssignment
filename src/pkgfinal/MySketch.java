@@ -11,6 +11,7 @@ import processing.core.PImage;
  */
 public class MySketch extends PApplet{
     private Person person;
+    private OldMan old;
     private Sparrow sparrow;
     private int stage = 0;
     private PImage bg;
@@ -24,7 +25,8 @@ public class MySketch extends PApplet{
         textSize(20);
         bg = loadImage("images/MainBG.jpg");
         sparrow = new Sparrow(this,100,100,"images/sparrow (1).png");
-        //person = new Person(this,100,100,"")
+        person = new Person(this,100,100,"old man","ojiisan03_smile.png");
+        old = new OldMan(this,100,100,"old man","ojiisan03_smile.png",sparrow);
     }
     
     public void draw(){
@@ -36,6 +38,8 @@ public class MySketch extends PApplet{
             text("Press ENTER to continue",20,100);
         } else if (stage==1){
             sparrow.display();
+            person.display();
+            old.display();
             if (keyPressed){
                 if(keyCode==LEFT){
                     sparrow.move(-5,0);
@@ -47,6 +51,11 @@ public class MySketch extends PApplet{
                     sparrow.move(0,5);
                 }
             } 
+        }
+        
+        if(sparrow.isCollidingWith(old)){
+            fill(255,0,0);
+            this.text("caw", old.x, old.y);
         }
     }
     
