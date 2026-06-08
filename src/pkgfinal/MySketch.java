@@ -15,6 +15,7 @@ public class MySketch extends PApplet{
     private Sparrow sparrow;
     private int stage = 0;
     private PImage bg;
+    private PImage dialog;
     
     public void settings() {
         size(545, 350);
@@ -25,8 +26,8 @@ public class MySketch extends PApplet{
         textSize(20);
         bg = loadImage("images/MainBG.jpg");
         sparrow = new Sparrow(this,100,100,"images/sparrow (1).png");
-        person = new Person(this,100,100,"old man","images/ojiisan03_smile.png");
         old = new OldMan(this,100,100,"old man","images/ojiisan03_smile.png",sparrow);
+        dialog = loadImage("images/unnamed (1).png");
     }
     
     public void draw(){
@@ -36,10 +37,19 @@ public class MySketch extends PApplet{
             fill(0);
             text("My Cultural Story",20,50);
             text("Press ENTER to continue",20,100);
+            sparrow.display();
+            //sparrow.fly();
         } else if (stage==1){
             sparrow.display();
-            person.display();
+            //person.display();
             old.display();
+            
+            if(sparrow.isCollidingWith(old)){
+                fill(255,0,0);
+                //this.text("caw", old.x, old.y);
+                image(dialog,30,200);
+            }
+            
             if (keyPressed){
                 if(keyCode==LEFT){
                     sparrow.move(-5,0);
@@ -51,18 +61,20 @@ public class MySketch extends PApplet{
                     sparrow.move(0,5);
                 }
             } 
+        } else if (stage==2){
+            //background(255);
+            System.out.println("in stage2");
         }
         
-        if(sparrow.isCollidingWith(old)){
-            fill(255,0,0);
-            this.text("caw", old.x, old.y);
-        }
     }
     
     public void keyPressed(){
         if (stage==0){
             if (keyCode==ENTER){
                 stage=1;
+                if (sparrow.x>=300){
+                    stage = 2;
+                }
             }
         }
     }

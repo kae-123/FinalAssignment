@@ -18,6 +18,7 @@ public class Sparrow extends Animal{
     
     public void fly(){
         x+=5;
+        y-=5;
     }
     
     public void splitTongue(){
