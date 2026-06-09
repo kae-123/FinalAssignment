@@ -13,18 +13,24 @@ public class MySketch extends PApplet{
     private Person person;
     private OldMan old;
     private Sparrow sparrow;
-    private int stage = 0;
+    private int stage = 1;
     private PImage bg;
     private PImage dialog;
+    private PImage bg2;
+    private PImage bg3;
+    private PImage starch;
     
     public void settings() {
-        size(545, 350);
+        size(1000, 660);
     }
     
     public void setup() {
         //background(255); 
         textSize(20);
-        bg = loadImage("images/MainBG.jpg");
+        bg = loadImage("images/MainMenuBG.png");
+        bg2 = loadImage("images/BG2.jpg");
+        bg3 = loadImage("images/BG3.jpg");
+        starch = loadImage("images/starch (1).png");
         sparrow = new Sparrow(this,100,100,"images/sparrow (1).png");
         old = new OldMan(this,100,100,"old man","images/ojiisan03_smile.png",sparrow);
         dialog = loadImage("images/unnamed (1).png");
@@ -32,16 +38,17 @@ public class MySketch extends PApplet{
     
     public void draw(){
         //background(255);
-        image(bg,0,0,width,height);
-        if(stage==0){
+        
+        if(stage==1){
+            image(bg,0,0,width,height);
             fill(0);
-            text("My Cultural Story",20,50);
-            text("Press ENTER to continue",20,100);
-            sparrow.display();
+            //text("My Cultural Story",20,50);
+            //text("Press ENTER to continue",20,100);
+            //sparrow.display();
             //sparrow.fly();
-        } else if (stage==1){
+        } else if (stage==2){
+            image(bg2,0,0,width,height);
             sparrow.display();
-            //person.display();
             old.display();
             
             if(sparrow.isCollidingWith(old)){
@@ -52,29 +59,31 @@ public class MySketch extends PApplet{
             
             if (keyPressed){
                 if(keyCode==LEFT){
-                    sparrow.move(-5,0);
+                    sparrow.move(-10,0);
                 } else if (keyCode==RIGHT){
-                    sparrow.move(5,0);
+                    sparrow.move(10,0);
                 } else if (keyCode==UP){
-                    sparrow.move(0,-5);
+                    sparrow.move(0,-10);
                 } else if (keyCode==DOWN){
-                    sparrow.move(0,5);
+                    sparrow.move(0,10);
                 }
-            } 
-        } else if (stage==2){
-            //background(255);
-            System.out.println("in stage2");
+            }
+            //System.out.print(sparrow.x+" "+sparrow.y);
+            
+            if (sparrow.x>=800&&sparrow.y>=600){
+                    stage = 3;
+                }
+        } else if (stage==3){
+            image(bg3,0,0,width,height);
+            image(starch,100,100,width,height);
         }
         
     }
     
     public void keyPressed(){
-        if (stage==0){
+        if (stage==1){
             if (keyCode==ENTER){
-                stage=1;
-                if (sparrow.x>=300){
-                    stage = 2;
-                }
+                stage=2;
             }
         }
     }
