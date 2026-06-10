@@ -12,7 +12,7 @@ import processing.core.PImage;
 public class Person extends GameObject{
     private String name;
     
-    public Person(PApplet p, int x, int y, String name, String imagePath){
+    public Person(PApplet p, int x, int y,String name,String imagePath){
         super(p,x,y,imagePath);
         this.name=name;
     }
@@ -20,6 +20,10 @@ public class Person extends GameObject{
     public void move(int dx, int dy){
       x+=dx;
       y+=dy;
+    }
+    
+    public String getName(){
+        return name;
     }
   
     public void draw(){
@@ -33,6 +37,5 @@ public class Person extends GameObject{
     public void displayInfo(PApplet p){
         app.fill(0);
         app.text("Name: "+name,x,y-50);
-        //app.text("Age: "+age,x,y-30);
     }
 }

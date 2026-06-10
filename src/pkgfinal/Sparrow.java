@@ -25,6 +25,10 @@ public class Sparrow extends Animal{
         tongueSplit=true;
     }
     
+    public boolean isTongueSplit(){
+        return tongueSplit;
+    }
+    
     public void move(int dx, int dy){
         x+=dx;
         y+=dy;
@@ -57,6 +61,15 @@ public class Sparrow extends Animal{
         return isLeftOfOtherRight && isRightOfOtherLeft&&
                 isAboveOtherButton && isBelowOtherTop;
     }
+    
+    public boolean touchingStarch(int sx,int sy, int sw, int sh){
+        return x < sx + sw &&
+           x + image.width > sx &&
+           y < sy + sh &&
+           y + image.height > sy;
+    }
+    
+    
     
     @Override
     public void makeSound(){

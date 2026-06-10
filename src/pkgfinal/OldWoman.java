@@ -4,23 +4,17 @@
  */
 package pkgfinal;
 import processing.core.PApplet;
-
 /**
  *
  * @author kaetg
  */
-public class Creature extends Animal{
-    public Creature(PApplet p,int x, int y, String imagePath){
-        super(p,x,y,imagePath,"Creature");
+public class OldWoman extends Person{
+    
+    public OldWoman(PApplet p, int x, int y,String name,String imagePath){
+        super(p,x,y,name,imagePath);
     }
     
-    public void scare(){
-        System.out.println("BOO!!!");
+    public void cutTongue(Sparrow sparrow){
+        sparrow.splitTongue();
     }
-    
-    @Override
-    public void makeSound(){
-        System.out.println("Grr!");
-    }
-
 }

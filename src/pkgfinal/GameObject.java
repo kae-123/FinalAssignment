@@ -29,11 +29,4 @@ public class GameObject {
         x+=dx;
         y+=dy;
     }
-    
-    public int getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
-    }
 }
