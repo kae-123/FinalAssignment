@@ -62,9 +62,8 @@ public class MySketch extends PApplet{
         arrow = loadImage("images/arrow.png");
         starch = loadImage("images/starch (1).png");
         sparrow = new Sparrow(this,100,100,"images/sparrowRfly1.png");
-        old = new OldMan(this,600,300,"old man","images/OMan.png",sparrow);
-        oldWoman = new OldWoman(this,200,300,"Old Woman","images/oldwoman.png");
-        dialog = loadImage("images/OMan1.png");
+        old = new OldMan(this,600,150,"Old Man","images/OMan.png",sparrow);
+        oldWoman = new OldWoman(this,130,170,"Old Woman","images/OWoman.png");
         pressEnter = loadImage("images/pressEnter.png");
         
         
@@ -87,10 +86,11 @@ public class MySketch extends PApplet{
             
             if(sparrow.isCollidingWith(old)){
                 metOldMan=true;
+                fill(255);
                 rect(20,500,960,120);
                 fill(0);
-                text(grandpaDialogue[dialogueIndex],100,500);
-                text("Click to contiue",100,550);
+                text(grandpaDialogue[dialogueIndex],100,550);
+                text("Click to contiue",100,600);
                 
             }
             
@@ -160,11 +160,11 @@ public class MySketch extends PApplet{
         } else if (stage==4){
             image(bg2,0,0,width,height);
             oldWoman.display();
-            
+            fill(255);
             rect(20,500,960,120);
             fill(0);
-            text(grandmaDialogue[dialogueIndex],100,500);
-            text("Click to contiue",100,550);
+            text(grandmaDialogue[dialogueIndex2],100,550);
+            text("Click to contiue",100,600);
             
         } else if (stage==5){
             image(bg3,0,0,width,height);
@@ -177,7 +177,7 @@ public class MySketch extends PApplet{
 
             text("The sparrow escaped into the mountains!",40,550);
             sparrow.fly();
-            if(sparrow.x>900){
+            if(sparrow.y==0){
                 stage=6;
             }
         } else if (stage==6){
@@ -241,10 +241,10 @@ public class MySketch extends PApplet{
             }
         }
         
-        if(stage==3){
-            dialogueIndex++;
-            if(dialogueIndex>=grandmaDialogue.length){
-                stage=4;
+        if(stage==4){
+            dialogueIndex2++;
+            if(dialogueIndex2>=grandmaDialogue.length){
+                stage=5;
             }
         }
         

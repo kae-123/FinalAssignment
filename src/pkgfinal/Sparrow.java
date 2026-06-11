@@ -35,6 +35,8 @@ public class Sparrow extends Animal{
     }
     
     
+    
+    
     public boolean isClicked(int mouseX, int mouseY) {
         /*calculates distance from mouse click at mouseX and mouseY to center 
         * of image since (x,y) of image is postioned at the top left corner  
