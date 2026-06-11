@@ -5,6 +5,11 @@
 package pkgfinal;
 import processing.core.PApplet;
 import processing.core.PImage;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.util.Scanner;
 /**
  *
  * @author 345341119
@@ -22,10 +27,27 @@ public class MySketch extends PApplet{
     private boolean ateStarch=false;
     
     private PImage starch;
+    private PImage arrow;
+    private int dialogueIndex = 0;//grandpa
+    private int dialogueIndex2 = 0;//grandma
     
-    private Animal[] animals;
-    private int [] riceX = {100,200,300,400,500};
+    String[] grandpaDialogue = {
+        "Hello little sparrow!",
+        "You look hungry today.",
+        "Feel free to explore the house."
+    };
+    String[] grandmaDialogue = {
+        "Who ate my starch paste?",
+        "Was it you, little sparrow?",
+        "You naughty bird!"
+    };
     
+    //arrays for stage3
+    int[] starchX = new int[5];
+    int[] starchY = new int[5];
+    boolean []collected = new boolean[5];
+    
+    ///////
     public void settings() {
         size(1000, 660);
     }
@@ -34,20 +56,23 @@ public class MySketch extends PApplet{
         //background(255); 
         textSize(20);
         bg = loadImage("images/MainMenuBG.png");
-        bg2 = loadImage("images/BG2.jpg");
-        bg3 = loadImage("images/BG3.jpg");
+        bg2 = loadImage("images/BG2.png");
+        bg3 = loadImage("images/BG3.png");
         
+        arrow = loadImage("images/arrow.png");
         starch = loadImage("images/starch (1).png");
-        sparrow = new Sparrow(this,100,100,"images/sparrow.png");
-        old = new OldMan(this,600,300,"old man","images/OMan1pic (1).png",sparrow);
+        sparrow = new Sparrow(this,100,100,"images/sparrowRfly1.png");
+        old = new OldMan(this,600,300,"old man","images/OMan.png",sparrow);
         oldWoman = new OldWoman(this,200,300,"Old Woman","images/oldwoman.png");
         dialog = loadImage("images/OMan1.png");
         pressEnter = loadImage("images/pressEnter.png");
         
-        animals = new Animal[2];
-        animals[0] = sparrow;
-        //animals[1] = new Creature();
         
+        
+        for(int i=0;i<5;i++){
+                starchX[i]=(int)random(100,900);
+                starchY[i]=(int)random(100,500);
+        }
     }
     
     public void draw(){
@@ -62,8 +87,11 @@ public class MySketch extends PApplet{
             
             if(sparrow.isCollidingWith(old)){
                 metOldMan=true;
-                image(dialog,30,520); //pretends it says hi sparrow, u look hungry
-                image(pressEnter,500,560);
+                rect(20,500,960,120);
+                fill(0);
+                text(grandpaDialogue[dialogueIndex],100,500);
+                text("Click to contiue",100,550);
+                
             }
             
             if (keyPressed){
@@ -77,18 +105,10 @@ public class MySketch extends PApplet{
                     sparrow.move(0,10);
                 }
             }
-            //System.out.print(sparrow.x+" "+sparrow.y);
-            
-            //if (sparrow.x>=800&&sparrow.y>=600){
-            //        stage = 3;
-            //    }
         } else if (stage==3){
             image(bg3,0,0,width,height);
-            for (int i=0;i<riceX.length;i++){
-                image(starch,riceX[i],100,100,100);
-            }
-            
             sparrow.display();
+            
             if(keyPressed){
                 if(keyCode==LEFT){
                     sparrow.move(-10,0);
@@ -101,24 +121,51 @@ public class MySketch extends PApplet{
                 }
             }
             
-            if(sparrow.touchingStarch(100, 100, 100, 100)){
-                ateStarch=true;
-                
-                fill(255);
-                rect(20,500,960,120);
-                fill(0);
-                text("The sparrow ate the starch paste!",40,550);
-                text("Press SPACE.",40,590);
+            for(int i=0;i<5;i++){
+                if(!collected[i]){
+                    image(starch,starchX[i],starchY[i],50,50);
+                    
+                    boolean touching = sparrow.x < starchX[i] + 50 &&
+                        sparrow.x + sparrow.image.width > starchX[i] &&
+                        sparrow.y < starchY[i] + 50 &&
+                        sparrow.y + sparrow.image.height > starchY[i];
+                    
+                    if (touching){
+                        collected[i]=true;
+                        try{
+                            FileWriter w= new FileWriter("score.txt",true);
+                            PrintWriter output = new PrintWriter(w);
+                            output.println("Starch #" + (i+1)+ " collected at "+ starchX[i]+ ", "+ starchY[i]);
+                            output.close();
+                        } catch(IOException e){
+                            System.err.println("Java exception: "+ e);
+                        }
+                    }
+                }
             }
+            
+            int collectedCount =0;
+            for(int i=0;i<5;i++){
+                if(collected[i]){
+                    collectedCount++;
+                }
+            }
+            if(collectedCount==5){
+                image(arrow,800,400,50,50);
+                if (sparrow.x >= 800 && sparrow.y >= 400){
+                    stage = 4;
+                }    
+            }
+            
         } else if (stage==4){
             image(bg2,0,0,width,height);
             oldWoman.display();
             
-            fill(255);
             rect(20,500,960,120);
             fill(0);
-            text("Old Woman: Who ate my starch paste?!",40,550);
-            text("Press SPACE.",40,590);
+            text(grandmaDialogue[dialogueIndex],100,500);
+            text("Click to contiue",100,550);
+            
         } else if (stage==5){
             image(bg3,0,0,width,height);
             sparrow.display();
@@ -187,6 +234,20 @@ public class MySketch extends PApplet{
     }
     
     public void mousePressed(){
+        if(stage==2&&metOldMan){
+            dialogueIndex++;
+            if(dialogueIndex>=grandpaDialogue.length){
+                stage=3;
+            }
+        }
+        
+        if(stage==3){
+            dialogueIndex++;
+            if(dialogueIndex>=grandmaDialogue.length){
+                stage=4;
+            }
+        }
+        
         if(stage==6){
             if(mouseX>250&&mouseX<400&&mouseY>250&&mouseY<350){
                 stage=7;
