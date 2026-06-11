@@ -150,8 +150,8 @@ public class MySketch extends PApplet{
                             System.err.println("Java exception: "+ e);
                         }
                     }
-                }
-            }//end not collected if statement
+                }//end not collected if statement
+            }//end for loop
             
             int collectedCount =0;
             for(int i=0;i<5;i++){
