@@ -15,14 +15,17 @@ import java.util.Scanner;
  * @author 345341119
  */
 public class MySketch extends PApplet{
+    //Game Objects
     private Person person;
     private OldMan old;
     private OldWoman oldWoman;
     private Sparrow sparrow;
+    
+    //setup
     private int stage = 1;
     private PImage bg,bg2,bg3;
+    
     //stage 2
-    private PImage dialog,dialog2,pressEnter;
     private boolean metOldMan=false;
     private boolean ateStarch=false;
     
@@ -53,32 +56,32 @@ public class MySketch extends PApplet{
     }
     
     public void setup() {
-        //background(255); 
         textSize(20);
+        
+        //backgrounds
         bg = loadImage("images/MainMenuBG.png");
         bg2 = loadImage("images/BG2.png");
         bg3 = loadImage("images/BG3.png");
         
         arrow = loadImage("images/arrow.png");
-        starch = loadImage("images/starch (1).png");
+        starch = loadImage("images/starch.png");
+        
+        //Game objects
         sparrow = new Sparrow(this,100,100,"images/sparrowRfly1.png");
         old = new OldMan(this,600,150,"Old Man","images/OMan.png",sparrow);
         oldWoman = new OldWoman(this,130,170,"Old Woman","images/OWoman.png");
-        pressEnter = loadImage("images/pressEnter.png");
         
-        
-        
+        //set random x and y coodinate for each index
         for(int i=0;i<5;i++){
-                starchX[i]=(int)random(100,900);
-                starchY[i]=(int)random(100,500);
+            starchX[i]=(int)random(100,900);
+            starchY[i]=(int)random(100,500);
         }
-    }
+    }//end setup
     
     public void draw(){
-        //background(255);
-        
         if(stage==1){
             image(bg,0,0,width,height);
+        ////////////////////////////STAGE 2////////////////////////////    
         } else if (stage==2){
             image(bg2,0,0,width,height);
             sparrow.display();
@@ -91,27 +94,32 @@ public class MySketch extends PApplet{
                 fill(0);
                 text(grandpaDialogue[dialogueIndex],100,550);
                 text("Click to contiue",100,600);
-                
             }
             
             if (keyPressed){
                 if(keyCode==LEFT){
                     sparrow.move(-10,0);
                 } else if (keyCode==RIGHT){
+                    sparrow.setNewImage("images/sparrowRfly1.png");
                     sparrow.move(10,0);
+                    sparrow.setNewImage("images/sparrowRfly2.png");
                 } else if (keyCode==UP){
                     sparrow.move(0,-10);
                 } else if (keyCode==DOWN){
                     sparrow.move(0,10);
                 }
             }
+        ////////////////////////////STAGE 3////////////////////////////
         } else if (stage==3){
             image(bg3,0,0,width,height);
             sparrow.display();
+            sparrow.setX(50);
+            sparrow.setY(50);
             
             if(keyPressed){
                 if(keyCode==LEFT){
                     sparrow.move(-10,0);
+                    sparrow.setNewImage("images/sparrowRfly2png");
                 } else if (keyCode==RIGHT){
                     sparrow.move(10,0);
                 } else if (keyCode==UP){
@@ -132,6 +140,7 @@ public class MySketch extends PApplet{
                     
                     if (touching){
                         collected[i]=true;
+                        //write to score.txt file
                         try{
                             FileWriter w= new FileWriter("score.txt",true);
                             PrintWriter output = new PrintWriter(w);
@@ -142,7 +151,7 @@ public class MySketch extends PApplet{
                         }
                     }
                 }
-            }
+            }//end not collected if statement
             
             int collectedCount =0;
             for(int i=0;i<5;i++){
@@ -151,12 +160,12 @@ public class MySketch extends PApplet{
                 }
             }
             if(collectedCount==5){
-                image(arrow,800,400,50,50);
-                if (sparrow.x >= 800 && sparrow.y >= 400){
+                image(arrow,700,400);
+                if (sparrow.x >= 700 && sparrow.y >= 400){
                     stage = 4;
                 }    
             }
-            
+        ////////////////////////////STAGE 4////////////////////////////    
         } else if (stage==4){
             image(bg2,0,0,width,height);
             oldWoman.display();
@@ -165,21 +174,23 @@ public class MySketch extends PApplet{
             fill(0);
             text(grandmaDialogue[dialogueIndex2],100,550);
             text("Click to contiue",100,600);
-            
+        ////////////////////////////STAGE 5////////////////////////////    
         } else if (stage==5){
             image(bg3,0,0,width,height);
+            //oldWoman(this,130,170,"Old Woman","images/OWomanAngry.png");
+            
             sparrow.display();
             
             fill(255);
             rect(20,500,960,120);
-
             fill(0);
-
             text("The sparrow escaped into the mountains!",40,550);
+            
             sparrow.fly();
             if(sparrow.y==0){
                 stage=6;
             }
+        ////////////////////////////STAGE 6////////////////////////////
         } else if (stage==6){
             background(200);
             fill(0);
@@ -193,6 +204,7 @@ public class MySketch extends PApplet{
 
             text("Small",290,310);
             text("Large",645,310);
+        ////////////////////////////STAGE 7////////////////////////////
         } else if (stage==7){
             background(255);
 
@@ -200,6 +212,7 @@ public class MySketch extends PApplet{
 
             text("The old man chose the small basket.",250,250);
             text("Inside was treasure!",250,300);
+        ////////////////////////////STAGE 8////////////////////////////
         } else if (stage==8){
             background(255);
 
@@ -209,9 +222,8 @@ public class MySketch extends PApplet{
 
             text("The large basket released monsters!",250,250);
         }
-        
-        
     }//end draw
+    
     public void keyPressed(){
         if (stage==1){
             if (keyCode==ENTER){
@@ -231,7 +243,7 @@ public class MySketch extends PApplet{
             sparrow.splitTongue();
             stage=5;
         }
-    }
+    }//end keyPressed
     
     public void mousePressed(){
         if(stage==2&&metOldMan){
@@ -258,5 +270,5 @@ public class MySketch extends PApplet{
                 stage=8;
             }
         }
-    }
+    }//end mousePressed
 }

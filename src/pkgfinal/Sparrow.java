@@ -18,7 +18,7 @@ public class Sparrow extends Animal{
     
     public void fly(){
         x+=5;
-        y-=5;
+        y-=10;
     }
     
     public void splitTongue(){
@@ -30,12 +30,17 @@ public class Sparrow extends Animal{
     }
     
     public void move(int dx, int dy){
-        x+=dx;
-        y+=dy;
+        this.x+=dx;
+        this.y+=dy;
     }
     
+    public void setX(int x){
+        this.x =x;
+    }
     
-    
+    public void setY(int y){
+        this.y=y;
+    }
     
     public boolean isClicked(int mouseX, int mouseY) {
         /*calculates distance from mouse click at mouseX and mouseY to center 

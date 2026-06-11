@@ -29,4 +29,8 @@ public class GameObject {
         x+=dx;
         y+=dy;
     }
+    
+    public void setNewImage(String imagePath){
+        this.image = app.loadImage(imagePath);
+    }
 }
