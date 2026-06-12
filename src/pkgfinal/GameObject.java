@@ -30,6 +30,11 @@ public class GameObject {
         y+=dy;
     }
     
+    public void setPosition(int x, int y){
+        this.x=x;
+        this.y=y;
+    }
+    
     public void setNewImage(String imagePath){
         this.image = app.loadImage(imagePath);
     }

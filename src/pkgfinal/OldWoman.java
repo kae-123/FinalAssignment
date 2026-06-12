@@ -14,16 +14,6 @@ public class OldWoman extends Person{
         super(p,x,y,name,imagePath);
     }
     
-    //trying to change grandma image to red tomato
-    public void setNewImage(String imagePath){
-        String newImage = imagePath;
-    }
-    
-    public void setPosition(int x, int y){
-        this.x=x;
-        this.y=y;
-    }
-    
     public void cutTongue(Sparrow sparrow){
         sparrow.splitTongue();
     }

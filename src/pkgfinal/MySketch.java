@@ -60,7 +60,7 @@ public class MySketch extends PApplet{
     //stage 6
     private int attempts = 0;
     private String mountainMessage = "";
-    private int correctMountain;
+    private int correctMountain=1;
     
     ///////
     public void settings() {
@@ -116,10 +116,11 @@ public class MySketch extends PApplet{
             }
             
             if (keyPressed){
+                sparrow.setNewImage("images/sparrowRfly1.png");
                 if(keyCode==LEFT){
                     sparrow.move(-10,0);
+                    sparrow.setNewImage("images/sparrowLfly2.png");
                 } else if (keyCode==RIGHT){
-                    sparrow.setNewImage("images/sparrowRfly1.png");
                     sparrow.move(10,0);
                     sparrow.setNewImage("images/sparrowRfly2.png");
                 } else if (keyCode==UP){
@@ -138,7 +139,6 @@ public class MySketch extends PApplet{
             if(keyPressed){
                 if(keyCode==LEFT){
                     sparrow.move(-10,0);
-                    //sparrow.setNewImage("images/sparrowRfly2png");
                 } else if (keyCode==RIGHT){
                     sparrow.move(10,0);
                 } else if (keyCode==UP){
@@ -153,9 +153,9 @@ public class MySketch extends PApplet{
                     image(starch,starchX[i],starchY[i],50,50);
                     
                     boolean touching = sparrow.x < starchX[i] + 50 &&
-                        sparrow.x + sparrow.image.width > starchX[i] &&
-                        sparrow.y < starchY[i] + 50 &&
-                        sparrow.y + sparrow.image.height > starchY[i];
+                        sparrow.x+sparrow.image.width > starchX[i] &&
+                        sparrow.y <starchY[i] + 50 &&
+                        sparrow.y + sparrow.image.height> starchY[i];
                     
                     if (touching){
                         collected[i]=true;
@@ -198,9 +198,9 @@ public class MySketch extends PApplet{
             
             image(bg3,0,0,width,height);
             sparrow.display();
-            oldWoman.setNewImage("images/OWomanAngry.png");
-            System.out.println("imagechanges");
             oldWoman.display();
+            //System.out.println("imagechanges");
+            oldWoman.setNewImage("images/OWomanAngry.png");
             
             if(keyPressed){
                 if(keyCode==LEFT){
@@ -233,7 +233,7 @@ public class MySketch extends PApplet{
                 text("The sparrow escaped into the mountains!",40,550);
 
                 sparrow.fly();
-                if(sparrow.y<=0){
+                if(sparrow.y==0){
                     stage=6;
                 }
             }
@@ -242,6 +242,11 @@ public class MySketch extends PApplet{
         } else if (stage==6){
             image(bgMountain,0,0);
             old.display();
+            old.setPosition(550, 150);
+            
+            fill(0);
+            text("x:"+mouseX,350,150);
+            text("y:"+mouseY,350,170);
             
             fill(255);
             rect(20,500,960,120);
@@ -249,13 +254,13 @@ public class MySketch extends PApplet{
             text(grandpaMountainDialogue[mountainDialogueIndex],40,550);
             text(mountainMessage,40,590);
             
-            try{
-                Scanner fileInput = new Scanner (new File("MountainScore.txt"));
-                correctMountain = fileInput.nextInt();
-                fileInput.close();
-            } catch(IOException e){
-                System.err.println(e);
-            }
+//            try{
+//                Scanner fileInput = new Scanner (new File("MountainScore.txt"));
+//                correctMountain = fileInput.nextInt();
+//                fileInput.close();
+//            } catch(IOException e){
+//                System.err.println(e);
+//            }
             
         ////////////////////////////STAGE 7////////////////////////////    
         }else if (stage==7){
@@ -332,20 +337,20 @@ public class MySketch extends PApplet{
         if(stage==6&&mountainDialogueIndex==2){
             
             //Mountain 1
-            if(mouseX >= 100&&mouseX <= 300 &&mouseY >= 250 &&mouseY <= 450){
+            if(mouseX >= 222&&mouseX <= 276 &&mouseY >= 55 &&mouseY <= 88){
                 attempts++;
                 
                 if(correctMountain == 1){
-                    
                     stage = 7;
                 }
                 else{
                     mountainMessage = "Wrong! Try again.";
+                    System.out.println("wrong");
                 }
             }
             
             //Mountain 2
-            if(mouseX >= 400 &&mouseX <= 600 &&mouseY >= 250 &&mouseY <= 450){
+            if(mouseX >= 500 &&mouseX <= 544 &&mouseY >= 137 &&mouseY <= 174){
                 attempts++;
                 
                 if(correctMountain == 2){
@@ -357,7 +362,7 @@ public class MySketch extends PApplet{
             }
             
             //mountain 3
-            if(mouseX >= 700 &&mouseX <= 900 &&mouseY >= 250 &&mouseY <= 450){
+            if(mouseX >= 868 &&mouseX <= 909 &&mouseY >= 300 &&mouseY <= 325){
                 attempts++;
                 
                 if(correctMountain == 3){
