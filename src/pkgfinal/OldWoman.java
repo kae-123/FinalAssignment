@@ -19,6 +19,11 @@ public class OldWoman extends Person{
         String newImage = imagePath;
     }
     
+    public void setPosition(int x, int y){
+        this.x=x;
+        this.y=y;
+    }
+    
     public void cutTongue(Sparrow sparrow){
         sparrow.splitTongue();
     }

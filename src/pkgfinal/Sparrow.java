@@ -69,6 +69,16 @@ public class Sparrow extends Animal{
                 isAboveOtherButton && isBelowOtherTop;
     }
     
+    public boolean isCollidingWith(OldWoman other){
+        boolean isLeftOfOtherRight = x<other.x+other.image.width;
+        boolean isRightOfOtherLeft = x+image.width>other.x;
+        boolean isAboveOtherButton = y<other.y+other.image.height;
+        boolean isBelowOtherTop= y+image.height>other.y;
+        
+        return isLeftOfOtherRight && isRightOfOtherLeft&&
+                isAboveOtherButton && isBelowOtherTop;
+    }
+    
     public boolean touchingStarch(int sx,int sy, int sw, int sh){
         return x < sx + sw &&
            x + image.width > sx &&
