@@ -17,25 +17,12 @@ public class Person extends GameObject{
         this.name=name;
     }
     
-    public void move(int dx, int dy){
-      x+=dx;
-      y+=dy;
-    }
-    
     public String getName(){
         return name;
-    }
-  
-    public void draw(){
-        app.image(image, x, y);
-    }
-    
-    public boolean isCollidingWith(Person other){
-        return true;
     }
     
     public void displayInfo(PApplet p){
         app.fill(0);
-        app.text("Name: "+name,x,y-50);
+        app.text("Name: "+name,x+55,y-30);
     }
 }

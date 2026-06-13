@@ -9,18 +9,8 @@ import processing.core.PApplet;
  *
  * @author kaetg
  */
-public class Creature extends Animal{
+public class Creature extends GameObject{
     public Creature(PApplet p,int x, int y, String imagePath){
-        super(p,x,y,imagePath,"Creature");
+        super(p,x,y,imagePath);
     }
-    
-    public void scare(){
-        System.out.println("BOO!!!");
-    }
-    
-    @Override
-    public void makeSound(){
-        System.out.println("Grr!");
-    }
-
 }

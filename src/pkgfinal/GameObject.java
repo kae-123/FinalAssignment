@@ -38,4 +38,8 @@ public class GameObject {
     public void setNewImage(String imagePath){
         this.image = app.loadImage(imagePath);
     }
+    
+    public boolean isClicked(float mx, float my) {
+        return (mx >= x && mx <= x + image.width && my >= y && my <= y + image.height);
+    }
 }

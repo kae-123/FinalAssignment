@@ -8,12 +8,28 @@ import processing.core.PApplet;
  *
  * @author kaetg
  */
-public class Sparrow extends Animal{
+public class Sparrow extends GameObject{
     private boolean tongueSplit;
+    private String name;
+    private static int totalStarchCollected = 0;
+    private int health;
     
     public Sparrow(PApplet p,int x, int y,String imagePath){
-        super(p,x,y,imagePath,"Sparrow");
+        super(p,x,y,imagePath);
+        this.name = "the Sparrow";
         tongueSplit = false;
+        health =100;
+    }
+    
+    public Sparrow(PApplet p,int x, int y,String imagePath,String name){
+        super(p,x,y,imagePath);
+        this.name = name;
+        tongueSplit = false;
+        health =100;
+    }
+    
+    public String getName(){
+        return name;
     }
     
     public void fly(){
@@ -21,42 +37,16 @@ public class Sparrow extends Animal{
         y-=10;
     }
     
+    public static void collectStarch(){
+        totalStarchCollected++;
+    }
+    
+    public static int getTotalStarchCollected(){
+        return totalStarchCollected;
+    }
+    
     public void splitTongue(){
         tongueSplit=true;
-    }
-    
-    public boolean isTongueSplit(){
-        return tongueSplit;
-    }
-    
-    public void move(int dx, int dy){
-        this.x+=dx;
-        this.y+=dy;
-    }
-    
-    public void setX(int x){
-        this.x =x;
-    }
-    
-    public void setY(int y){
-        this.y=y;
-    }
-    
-    public boolean isClicked(int mouseX, int mouseY) {
-        /*calculates distance from mouse click at mouseX and mouseY to center 
-        * of image since (x,y) of image is postioned at the top left corner  
-        * we use x+(image.pixelWidth/2), y+(image.pixelHeight/2)) to get center*/
-        int centerX = x+(image.pixelWidth/2);
-        int centerY = y+(image.pixelHeight/2);        
-        float d = PApplet.dist(mouseX, mouseY, centerX ,centerY );
-
-        //gives us the dimensions of the image 32px by 32px
-        System.out.println("image height"+image.pixelHeight);
-        System.out.println("image width"+image.pixelWidth);
-
-        // returns true if  mouse clicked is within 16px from the center of image
-        // we use 16px because the image is 32px by 32px
-        return d < 16; 
     }
     
     public boolean isCollidingWith(OldMan other){
@@ -79,18 +69,11 @@ public class Sparrow extends Animal{
                 isAboveOtherButton && isBelowOtherTop;
     }
     
-    public boolean touchingStarch(int sx,int sy, int sw, int sh){
-        return x < sx + sw &&
-           x + image.width > sx &&
-           y < sy + sh &&
-           y + image.height > sy;
+    public int getHealth(){
+        return health;
     }
     
-    
-    
-    @Override
-    public void makeSound(){
-        System.out.println("Chirp!");
+    public void loseHealth(int amt){
+        health-=amt;
     }
-
 }
