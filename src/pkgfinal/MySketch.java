@@ -119,10 +119,10 @@ public class MySketch extends PApplet{
             text("y:"+mouseY,350,170);
             if(enteringName){
                 fill(255);
-                rect(200,400,600,100);
+                rect(60,400,400,100);
                 fill(0);
-                text("Enter Sparrow Name:",250,440);
-                text(userInput,250,480);
+                text("Enter Sparrow Name:",110,440);
+                text(userInput,110,480);
             }
             
             //text(userInput,20,100);
