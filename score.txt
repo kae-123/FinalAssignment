@@ -557,3 +557,11 @@ Starch #1 collected at 773, 261
 Starch #4 collected at 803, 113
 Starch #3 collected at 367, 439
 Starch #2 collected at 263, 436
+Starch #1 collected at 614, 201
+Starch #2 collected at 497, 176
+Starch #4 collected at 455, 179
+Starch #2 collected at 584, 145
+Starch #4 collected at 235, 217
+Starch #3 collected at 115, 258
+Starch #5 collected at 281, 298
+Starch #1 collected at 350, 488

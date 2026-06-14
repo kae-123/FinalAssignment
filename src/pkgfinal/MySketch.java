@@ -130,8 +130,8 @@ public class MySketch extends PApplet{
     ////////////////////////////STAGE 2////////////////////////////    
         } else if (stage==2){
             image(bg2,0,0,width,height);//set background image
-            sparrow.display(); //display sparrow
-            old.display(); //display old man
+            displayObject(sparrow);
+            displayObject(old);
             
             //if sparrow is colliding with old man
             if(sparrow.isCollidingWith(old)){
@@ -162,7 +162,7 @@ public class MySketch extends PApplet{
     ////////////////////////////STAGE 3////////////////////////////
         } else if (stage==3){
             image(bg3,0,0,width,height);//set background image
-            sparrow.display();//display sparrow
+            displayObject(sparrow);//display sparrow
             fill(255);//change color
             rect(5,5,190,40);//draw rectangle
             fill(0);//change color
@@ -230,7 +230,7 @@ public class MySketch extends PApplet{
     ////////////////////////////STAGE 4////////////////////////////    
         } else if (stage==4){
             image(bg2,0,0,width,height);//set backgrond img
-            oldWoman.display();//display oldWoman
+            displayObject(oldWoman);//display oldWoman
             oldWoman.displayInfo(this);//display naem
             fill(255);//change color
             rect(20,500,960,120);//draw rect
@@ -240,8 +240,8 @@ public class MySketch extends PApplet{
         ////////////////////////////STAGE 5////////////////////////////    
         } else if (stage==5){
             image(bg3,0,0,width,height);//set background img
-            sparrow.display();//display sparrow
-            oldWoman.display();//display oldWoman
+            displayObject(sparrow);//display sparrow
+            displayObject(oldWoman);//display oldWoman
             oldWoman.setNewImage("images/OWomanAngry.png");//change image
             
             if (keyPressed){
@@ -292,7 +292,7 @@ public class MySketch extends PApplet{
     ////////////////////////////STAGE 6////////////////////////////
         } else if (stage==6){
             image(bgMountain,0,0);//set bg img
-            old.display();//display old man
+            displayObject(old);//display old man
             old.setPosition(550, 150);//change position of old man
             
             //used for testing
@@ -308,16 +308,16 @@ public class MySketch extends PApplet{
     ////////////////////////////STAGE 7////////////////////////////    
         }else if (stage==7){
             image(bgMountain,0,0);//set bg img
-            SChest.display();//display small chest
-            LChest.display();//display large chest
+            displayObject(SChest);//display small chest
+            displayObject(LChest);//display large chest
     ////////////////////////////STAGE 8////////////////////////////
         } else if (stage==8){ //small chest ending
             image(bgGood,0,0);//change backgroundiamge
             fill(255);//change color
-            SChest.display();//display small chest
+            displayObject(SChest);//display small chest
             SChest.setNewImage("images/SchestOpen.png");//change image
             SChest.setPosition(595,336);//change position
-            sparrow.display();//display sparrow
+            displayObject(sparrow);//display sparrow
             sparrow.setPosition(660,140);//change position
             sparrow.setNewImage("images/sparrowStill.png");//change image
             
@@ -349,10 +349,10 @@ public class MySketch extends PApplet{
             image(bgEvil,0,0);//set background image
             fill(255);//change color
             text("The large basket released a monster!",250,250);//show text
-            LChest.display();//display large chest
+            displayObject(LChest);//display large chest
             LChest.setPosition(520,250);//change position
             LChest.setNewImage("images/LchestOpen.png");//change image
-            mayo.display();//display mayo
+            displayObject(mayo);//display mayo
             mayo.move(0, -5);//call move method and decrease y by 5
             if(mayo.y==0){//if mayo touches the top
                 stage=10;//change stage to 10
@@ -493,4 +493,13 @@ public class MySketch extends PApplet{
         }
         
     }//end mousePressed
+    
+    /**
+     * Displays any GameObject to screen
+     * 
+     * @param obj The GameObject to be displayed
+     */
+    public void displayObject(GameObject obj){
+        obj.display();//replace obj with param
+    }
 }//end MySketch
