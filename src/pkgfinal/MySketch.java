@@ -24,7 +24,7 @@ public class MySketch extends PApplet{
     private GameObject SChest,LChest;
     
     //setup
-    private int stage = 10; //initial stage
+    private int stage = 1; //initial stage
     private PImage bg,bg2,bg3,bgMountain,bgEvil,bgGood; //backgrounds
     private PImage starch,arrow,bigMayo; //other images
     private int correctMountain=1;
@@ -105,7 +105,7 @@ public class MySketch extends PApplet{
         old = new OldMan(this,600,150,"Old Man","images/OMan.png",sparrow);
         oldWoman = new OldWoman(this,130,170,"Old Woman","images/OWoman.png");
             //chests
-            SChest = new GameObject(this,140,190,"images/SchestClose.png");
+            SChest = new GameObject(this,140,240,"images/SchestClose.png");
             LChest = new GameObject(this,520,250,"images/LchestClose.png");
         
         //set random x and y coodinate for each index -- AI USAGE
@@ -271,13 +271,13 @@ public class MySketch extends PApplet{
             if(sparrow.isCollidingWith(oldWoman)){
                 sparrow.loseHealth(25);//call loseHealth method and take away 25
             }
-            
+            fill(255);//change color
             text("Health: "+sparrow.getHealth(),20,20);//show text and health
             
             //if sparrow's healath is <=0
             if(sparrow.getHealth()<=0){
                 sparrow.splitTongue();//call spitTongue method (sets to true)
-                fill(255);//change color
+                
                 rect(20,500,960,120);//draw rect
                 fill(0);//change color
                 text("The sparrow escaped into the mountains!",40,550);//show text
@@ -307,9 +307,7 @@ public class MySketch extends PApplet{
             
     ////////////////////////////STAGE 7////////////////////////////    
         }else if (stage==7){
-            background(200);//set
-            
-            text("Choose a basket!",350,150);//show text
+            image(bgMountain,0,0);//set bg img
             SChest.display();//display small chest
             LChest.display();//display large chest
     ////////////////////////////STAGE 8////////////////////////////
