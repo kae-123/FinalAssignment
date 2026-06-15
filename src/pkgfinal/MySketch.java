@@ -78,11 +78,17 @@ public class MySketch extends PApplet{
     boolean []collected = new boolean[5];
     
 ////////////////////////////////////////////////////////////////
+    /**
+     * Setting the size of screen
+     */
     public void settings() {
         size(1000, 660); //set screen size to 1000x660
     }
     
 ////////////////////////////////////////////////////////////////
+    /**
+     * Initializes images, objects, and game variables
+     */
     public void setup() {
         textSize(20); //set text size to 20
         
@@ -116,8 +122,11 @@ public class MySketch extends PApplet{
     }//end setup
     
 ////////////////////////////////////////////////////////////////    
+    /**
+     * Continuously draws the game screen and contents
+     */
     public void draw(){
-        if(stage==1){
+        if(stage==1){ //if stage is 1
             image(bg,0,0,width,height); //show image 
             if(enteringName){ //if enteringName is true
                 fill(255);//change text color to white
@@ -128,7 +137,7 @@ public class MySketch extends PApplet{
             }
             
     ////////////////////////////STAGE 2////////////////////////////    
-        } else if (stage==2){
+        } else if (stage==2){ //if stage is 2
             image(bg2,0,0,width,height);//set background image
             displayObject(sparrow);
             displayObject(old);
@@ -160,7 +169,7 @@ public class MySketch extends PApplet{
                 }
             }//end if
     ////////////////////////////STAGE 3////////////////////////////
-        } else if (stage==3){
+        } else if (stage==3){ //if stage is 3
             image(bg3,0,0,width,height);//set background image
             displayObject(sparrow);//display sparrow
             fill(255);//change color
@@ -228,7 +237,7 @@ public class MySketch extends PApplet{
                 }    
             }
     ////////////////////////////STAGE 4////////////////////////////    
-        } else if (stage==4){
+        } else if (stage==4){ //if stage is 4
             image(bg2,0,0,width,height);//set backgrond img
             displayObject(oldWoman);//display oldWoman
             oldWoman.displayInfo(this);//display naem
@@ -238,7 +247,7 @@ public class MySketch extends PApplet{
             text(grandmaDialogue[dialogueIndex2],100,550);//show dialogue at index dialogueIndex2
             text("Click to contiue",100,600);//show text
         ////////////////////////////STAGE 5////////////////////////////    
-        } else if (stage==5){
+        } else if (stage==5){ //if stage is 5
             image(bg3,0,0,width,height);//set background img
             displayObject(sparrow);//display sparrow
             displayObject(oldWoman);//display oldWoman
@@ -290,7 +299,7 @@ public class MySketch extends PApplet{
             }//end if
             
     ////////////////////////////STAGE 6////////////////////////////
-        } else if (stage==6){
+        } else if (stage==6){ //if stage is 6
             image(bgMountain,0,0);//set bg img
             displayObject(old);//display old man
             old.setPosition(550, 150);//change position of old man
@@ -306,12 +315,12 @@ public class MySketch extends PApplet{
             text(mountainMessage,40,590);//show mountain message
             
     ////////////////////////////STAGE 7////////////////////////////    
-        }else if (stage==7){
+        }else if (stage==7){ //if stage is 7
             image(bgMountain,0,0);//set bg img
             displayObject(SChest);//display small chest
             displayObject(LChest);//display large chest
     ////////////////////////////STAGE 8////////////////////////////
-        } else if (stage==8){ //small chest ending
+        } else if (stage==8){ //small chest ending --if stage is 8
             image(bgGood,0,0);//change backgroundiamge
             fill(255);//change color
             displayObject(SChest);//display small chest
@@ -345,7 +354,7 @@ public class MySketch extends PApplet{
             text(endingMessage+ " " + sparrow.getName()+ "!",70,300);//shows endingMessage and name
             
     ////////////////////////////STAGE 9////////////////////////////
-        } else if (stage==9){//large chest ending1
+        } else if (stage==9){//large chest ending1 --if stage is 9
             image(bgEvil,0,0);//set background image
             fill(255);//change color
             text("The large basket released a monster!",250,250);//show text
@@ -359,16 +368,19 @@ public class MySketch extends PApplet{
             }
             
     ////////////////////////////STAGE 10////////////////////////////
-        } else if  (stage==10){//large chest ending2
+        } else if  (stage==10){//large chest ending2 --if stage is 10
             image(bgEvil,0,0);//set background img
             image(bigMayo,500,100);//show bigMayo image
             textSize(50);//change text size
             text("Don't be greedy!",150,250);//show text
             text(soundText,mayo.x-20,100);//show soundText
-        }
+        }//end if-elseif
     }//end draw
     
-////////////////////////////////////////////////////////////////    
+//////////////////////////////////////////////////////////////// 
+    /**
+     * Used for keyboard input and movement
+     */
     public void keyPressed(){
         
         //if in stage 1 and enteringName = true
@@ -402,6 +414,9 @@ public class MySketch extends PApplet{
     }//end keyPressed
 
 ////////////////////////////////////////////////////////////////    
+    /**
+     * Used for mouse clicks and object interaction
+     */
     public void mousePressed(){
         //if click detected in stage 1
         if(stage==1){
